@@ -1,27 +1,26 @@
-/* =========================================
-   Base
-   ========================================= */
-
+/* Use border-box so padding/borders don't affect overall width/height math */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* Smooth scroll for in-page anchors */
 html {
   scroll-behavior: smooth;
 }
 
+/* Global body text styling */
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
   line-height: 1.6;
-  color: #111827;
+  color: #000000;
   background-color: #f9fafb;
 }
 
-/* Layout container */
-
+/* Constrain main layout width and center it */
 .site-header,
 .page,
 .site-footer {
@@ -29,13 +28,12 @@ body {
   margin-inline: auto;
 }
 
-/* Typography */
-
+/* Headings - font*/
 h1,
 h2,
 h3 {
   font-family: "Georgia", "Times New Roman", serif;
-  color: #111827;
+  color: #000000;
 }
 
 h1 {
@@ -53,29 +51,33 @@ h3 {
   margin: 0.75rem 0 0.4rem;
 }
 
+/* Paragraph spacing */
 p {
   margin: 0 0 0.75rem;
 }
 
-/* Links */
-
+/* Link styling with subtle underline */
 a {
-  color: #2563eb;
+  color: #4f46e5;
   text-decoration: underline;
-  text-underline-offset: 0.12em;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
 }
 
-a:hover {
+/* Mouse hover + keyboard focus */
+a:hover,
+a:focus-visible {
   text-decoration-thickness: 2px;
+  outline: 2px solid #a5b4fc;
+  outline-offset: 2px;
 }
 
-/* Skip link */
-
+/* Skip link for keyboard users */
 .skip-link {
   position: absolute;
   left: 0.75rem;
   top: -40px;
-  background: #111827;
+  background: #000000;
   color: #f9fafb;
   padding: 0.4rem 0.75rem;
   border-radius: 999px;
@@ -84,27 +86,26 @@ a:hover {
   font-size: 0.9rem;
 }
 
-.skip-link:focus,
+/* When focused via keyboard, move into view */
 .skip-link:focus-visible {
   top: 0.75rem;
 }
 
-/* =========================================
-   Header + Nav
-   ========================================= */
+/* Header and Navigation  */
 
+/* Spacing for header area */
 .site-header {
   padding: 1.25rem 0 0.5rem;
 }
 
-.site-header .tagline {
+/* Subtitle / description under page title */
+.tagline {
   margin-top: 0;
   margin-bottom: 1rem;
   color: #4b5563;
 }
 
-/* Nav */
-
+/* Main navigation layout */
 .main-nav {
   list-style: none;
   padding: 0;
@@ -114,6 +115,7 @@ a:hover {
   gap: 0.5rem;
 }
 
+/* Navigation buttons */
 .main-nav a {
   display: inline-block;
   padding: 0.45rem 0.8rem;
@@ -123,300 +125,463 @@ a:hover {
   border: 1px solid #e5e7eb;
   background: #ffffff;
   color: #374151;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
 }
 
+/* Hover state for navigation links */
 .main-nav a:hover {
-  background: #2563eb;
+  background: #4f46e5;
   color: #ffffff;
-  border-color: #2563eb;
+  border-color: #4f46e5;
 }
 
+/* Default active nav button */
 .main-nav a[aria-current="page"] {
-  background: #111827;
+  background: #000000;
   color: #f9fafb;
-  border-color: #111827;
+  border-color: #000000;
 }
 
-/* Main container */
-
-.page {
-  padding-bottom: 2rem;
+/* SPRING - active nav */
+body.season.spring .main-nav a[aria-current="page"] {
+  background: #9d174d;
+  border-color: #831843;
 }
 
-/* =========================================
-   Home: seasons grid + timeline
-   ========================================= */
-
-.home .site-header {
-  margin-bottom: 0.5rem;
+/* SUMMER — active nav */
+body.season.summer .main-nav a[aria-current="page"] {
+  background: #b45309;
+  border-color: #92400e;
 }
 
+/* FALL — active nav */
+body.season.fall .main-nav a[aria-current="page"] {
+  background: #9a3412;
+  border-color: #7c2d12;
+}
+
+/* WINTER — active nav */
+body.season.winter .main-nav a[aria-current="page"] {
+  background: #1e3a8a;
+  border-color: #1e40af;
+}
+
+/* Home: Background + Seasons Grid + Timeline */
+
+/* Gradient for home page */
+body.home {
+  background:
+    radial-gradient(circle at top left,  #fee2e2 0,  transparent 55%),
+    radial-gradient(circle at top right, #fef3c7 0,  transparent 55%),
+    radial-gradient(circle at bottom,    #dbeafe 0,  transparent 60%),
+    linear-gradient(180deg, #fdf2ff 0, #f9fafb 45%, #ffffff 100%);
+}
+
+/* Intro spacing */
 .home .intro {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
+/* Seasons section spacing */
 .seasons {
   margin-bottom: 2rem;
 }
 
+/* Seasons - responsive grid */
 .season-grid {
   list-style: none;
   padding: 0;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr;
   gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
+/* Card for each season link */
 .season-card a {
   display: block;
   background: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 0.9rem;
   padding: 0.75rem;
-  border: 1px solid #e5e7eb;
+  border: 2px solid transparent;
   text-decoration: none;
   color: inherit;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
+/* Season image styling */
 .season-card img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   margin-bottom: 0.5rem;
 }
 
-.season-card h3 {
-  margin: 0 0 0.2rem;
+/* Lift on hover for season cards */
+.season-card a:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.18);
 }
 
-.season-card p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #4b5563;
-}
-
-/* subtle seasonal borders */
-
+/* Seasonal tints on home season cards */
 .season-card--spring a {
   border-color: #fecdd3;
+  background: linear-gradient(135deg, #ffffff, #fff1f5);
 }
 
 .season-card--summer a {
   border-color: #feeaa4;
+  background: linear-gradient(135deg, #ffffff, #fffbeb);
 }
 
 .season-card--fall a {
   border-color: #fed7aa;
+  background: linear-gradient(135deg, #ffffff, #fff7ed);
 }
 
 .season-card--winter a {
   border-color: #bfdbfe;
+  background: linear-gradient(135deg, #ffffff, #eff6ff);
 }
 
-/* Timeline */
-
+/* Timeline of the year on home page */
 .timeline-list {
   list-style: none;
   padding: 0;
-  margin: 0;
   border-left: 2px solid #d1d5db;
 }
 
 .timeline-list li {
   padding: 0.4rem 0 0.75rem 1.2rem;
   position: relative;
-  font-size: 0.9rem;
   color: #4b5563;
+  font-size: 0.9rem;
 }
 
 .timeline-list li strong {
-  color: #111827;
+  color: #000000;
 }
 
+/* Timeline bullet dots, recolored per season */
 .timeline-list li::before {
   content: "";
   width: 10px;
   height: 10px;
-  background: #9ca3af;
-  border-radius: 999px;
   position: absolute;
   left: -6px;
   top: 0.7rem;
+  border-radius: 999px;
 }
 
-/* =========================================
-   Season pages: layout + cards
-   ========================================= */
-
-body.season {
-  background-color: #f3f4f6;
+.timeline-list li:nth-child(1)::before {
+  background: #fb7185;
 }
 
-body.season .site-header {
-  margin-bottom: 0.5rem;
+.timeline-list li:nth-child(2)::before {
+  background: #facc15;
 }
 
-/* Section headings */
+.timeline-list li:nth-child(3)::before {
+  background: #f97316;
+}
 
+.timeline-list li:nth-child(4)::before {
+  background: #3b82f6;
+}
+
+/* Season Pages: Gradients + Layout */
+
+/* Gradients per season page */
+
+/* Spring */
+body.season.spring {
+  background:
+    radial-gradient(circle at 10% 0%,  #fee2e2 0,  transparent 55%),
+    radial-gradient(circle at 90% 0%,  #f9a8d4 0, transparent 55%),
+    linear-gradient(180deg, #fff7fb 0, #fefce8 55%, #ffffff 100%);
+}
+
+/* Summer */
+body.season.summer {
+  background:
+    radial-gradient(circle at 0% 0%,    #fef3c7 0,  transparent 55%),
+    radial-gradient(circle at 100% 10%, #bbf7d0 0, transparent 55%),
+    linear-gradient(180deg, #fffbeb 0, #e0f2fe 55%, #ffffff 100%);
+}
+
+/* Fall */
+body.season.fall {
+  background:
+    radial-gradient(circle at 0% 10%,   #fed7aa 0,  transparent 55%),
+    radial-gradient(circle at 100% 0%,  #fecaca 0, transparent 55%),
+    linear-gradient(180deg, #fff7ed 0, #fef3c7 55%, #ffffff 100%);
+}
+
+/* Winter */
+body.season.winter {
+  background:
+    radial-gradient(circle at 0% 100%,  #e0f2fe 0,  transparent 55%),
+    radial-gradient(circle at 100% 0%,  #c4b5fd 0, transparent 55%),
+    linear-gradient(180deg, #f9fafb 0, #e5e7eb 45%, #ffffff 100%);
+}
+
+/* Section headings container blocks */
 #movies,
 #tv {
   margin-top: 1.5rem;
 }
 
+/* Section titles with understated divider */
 #movies > h2,
 #tv > h2 {
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid #000000;
   padding-bottom: 0.3rem;
-  margin-bottom: 0.75rem;
 }
 
-/* Media cards */
+/* Poster grid (season pages) */
+body.season #movies,
+body.season #tv {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 2.5rem;
+}
 
+/* Ensure headings span full row above cards */
+body.season #movies > h2,
+body.season #tv > h2 {
+  grid-column: 1 / -1;
+}
+
+/* Move to 3 columns */
+@media (min-width: 780px) {
+  body.season #movies,
+  body.season #tv {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Clickable Grid Poster Cards */
+
+/* Card for each film / TV item in grid view */
 .media-card {
   background: #ffffff;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
+  padding: 0.75rem;
   border: 1px solid #e5e7eb;
-  padding: 0.9rem 1rem 1rem;
-  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
 }
 
-.media-card h3 {
-  margin-top: 0;
-}
-
-.media-card p {
-  font-size: 0.93rem;
-}
-
-/* Poster */
-
-.poster {
-  margin: 0.25rem 0 0.65rem;
-}
-
-.poster img {
-  width: 180px;
-  max-width: 100%;
-  border-radius: 0.5rem;
-  display: block;
-}
-
-/* =========================================
-   Seasonal color tweaks
-   ========================================= */
-
-/* Spring */
-
-body.season.spring h1 {
-  color: #9d174d;
-}
-
-body.season.spring .tagline {
-  color: #be185d;
-}
-
-body.season.spring #movies > h2,
-body.season.spring #tv > h2 {
-  border-bottom-color: #fecdd3;
-}
-
+/* Seasonal card tints */
 body.season.spring .media-card {
-  border-color: #fecdd3;
-}
-
-/* Summer */
-
-body.season.summer h1 {
-  color: #92400e;
-}
-
-body.season.summer .tagline {
-  color: #b45309;
-}
-
-body.season.summer #movies > h2,
-body.season.summer #tv > h2 {
-  border-bottom-color: #fde68a;
+  background: linear-gradient(180deg, #fff7fb 0, #ffffff 40%);
 }
 
 body.season.summer .media-card {
-  border-color: #fde68a;
-}
-
-/* Fall */
-
-body.season.fall h1 {
-  color: #7c2d12;
-}
-
-body.season.fall .tagline {
-  color: #9a3412;
-}
-
-body.season.fall #movies > h2,
-body.season.fall #tv > h2 {
-  border-bottom-color: #fed7aa;
+  background: linear-gradient(180deg, #fffbeb 0, #ffffff 40%);
 }
 
 body.season.fall .media-card {
-  border-color: #fed7aa;
-}
-
-/* Winter */
-
-body.season.winter h1 {
-  color: #0f172a;
-}
-
-body.season.winter .tagline {
-  color: #1d4ed8;
-}
-
-body.season.winter #movies > h2,
-body.season.winter #tv > h2 {
-  border-bottom-color: #e0f2fe;
+  background: linear-gradient(180deg, #fff7ed 0, #ffffff 40%);
 }
 
 body.season.winter .media-card {
-  border-color: #e0f2fe;
+  background: linear-gradient(180deg, #eff6ff 0, #ffffff 40%);
 }
 
-/* Citation */
-.citation {
-  margin-top: 1rem;
+/* Lift effect on hover; shadows set per season below */
+.media-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Seasonal hover glow shadows */
+body.season.spring .media-card:hover {
+  box-shadow: 0 10px 24px rgba(244, 114, 182, 0.25);
+}
+
+body.season.summer .media-card:hover {
+  box-shadow: 0 10px 24px rgba(234, 179, 8, 0.25);
+}
+
+body.season.fall .media-card:hover {
+  box-shadow: 0 10px 24px rgba(249, 115, 22, 0.25);
+}
+
+body.season.winter .media-card:hover {
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.25);
+}
+
+/* Full poster image */
+.poster img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.85rem;
+  display: block;
+  cursor: pointer; /* posters feel clickable */
+}
+
+/* Show title in grid above poster */
+.media-card h3 {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.media-card p,
+.media-card .citation {
+  display: none;
+}
+
+/* Non-interactive click hint under each card */
+.click-hint {
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #6b7280;
+
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px dashed #e5e7eb;
+
+  text-decoration: none;
+  font-style: normal;
+  pointer-events: none; /* doesn't behave like a button/link */
+}
+
+/* Info icon on the hint */
+.click-hint::before {
+  content: "ⓘ";
   font-size: 0.8rem;
-  color: #6b6b6b;
+  line-height: 1;
 }
 
-.citation-label {
-  font-weight: 600;
-  margin-right: 0.25rem;
-  color: #888;
+.media-card:hover .click-hint {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.4);
 }
 
-.citation a {
-  color: #6b6b6b;
-  text-decoration: underline;
+/* Hide hint inside the modal view */
+.media-modal .click-hint {
+  display: none;
 }
 
-/* =========================================
-   Footer
-   ========================================= */
+/* Modal Overlay (details view) */
 
+/* Full-screen overlay container, hidden by default */
+.media-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.92);
+  padding: 1.5rem;
+}
+
+/* Toggle this class via JS to show modal */
+.media-modal.is-open {
+  display: flex;
+}
+
+/* Dialog panel that holds poster + text */
+.media-modal-dialog {
+  background: #020617;
+  color: #e5e7eb;
+  width: min(100% - 2rem, 750px);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.6rem;
+  overflow-y: auto;
+  max-height: 90vh;
+  position: relative;
+}
+
+/* Thin seasonal accent bar at the top of the modal */
+.media-modal-dialog::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  border-radius: 1.25rem 1.25rem 0 0;
+}
+
+/* Accent colors per season for modal top bar */
+body.season.spring .media-modal-dialog::before {
+  background: linear-gradient(90deg, #f472b6, #fb7185);
+}
+
+body.season.summer .media-modal-dialog::before {
+  background: linear-gradient(90deg, #facc15, #34d399);
+}
+
+body.season.fall .media-modal-dialog::before {
+  background: linear-gradient(90deg, #f97316, #ea580c);
+}
+
+body.season.winter .media-modal-dialog::before {
+  background: linear-gradient(90deg, #60a5fa, #a855f7);
+}
+
+/* Close “X” button in modal */
+.media-modal-close {
+  position: absolute;
+  top: 0.9rem;
+  right: 1rem;
+  border: none;
+  background: none;
+  color: #e5e7eb;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* Poster inside modal: reuse base styles + extra spacing */
+.media-modal .poster img {
+  margin-bottom: 1rem; /* extra spacing below poster in modal */
+}
+
+/* Show all the hidden text again inside the modal */
+.media-modal-dialog h3,
+.media-modal-dialog p,
+.media-modal-dialog .citation {
+  display: block;
+}
+
+/* Citation styling in modal */
+.media-modal-dialog .citation {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* Make title & body text clearly readable on dark background */
+.media-modal-dialog h3 {
+  color: #f9fafb;   /* bright heading */
+  margin-top: 0;
+}
+
+/* Footer */
+
+/* Simple footer with light border */
 .site-footer {
-  border-top: 1px solid #e5e7eb;
-  padding: 1rem 0 1.5rem;
-  margin-top: 1rem;
   text-align: center;
+  padding: 1rem 0;
   font-size: 0.85rem;
   color: #6b7280;
+  margin-top: 3rem;
+  border-top: 1px solid #e5e7eb;
 }
 
-/* =========================================
-   Responsive
-   ========================================= */
+/* Responsive home season grid */
 
+/* Wider breakpoints for home page season cards */
 @media (min-width: 720px) {
   .season-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
